@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #cfbcff;
+  --color-primary-container: #6750a4;
+  --color-on-primary: #381e72;
+  
+  --color-secondary: #cdc0e9;
+  --color-secondary-container: #4d4465;
+  
+  --color-tertiary: #e7c365;
+  
+  --color-surface: #141218;
+  --color-surface-container-lowest: #0f0d13;
+  --color-surface-container-low: #1d1b20;
+  --color-surface-container: #211f24;
+  --color-surface-container-high: #2b292f;
+  --color-surface-container-highest: #36343a;
+  
+  --color-on-surface: #e6e0e9;
+  --color-on-surface-variant: #cbc4d2;
+  --color-outline: #948e9c;
+  --color-outline-variant: #494551;
+
+  --color-emerald-500: #10b981;
+  --color-rose-500: #f43f5e;
+
+  --radius-2xl: 1rem;
+  --radius-xl: 0.75rem;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #141218;
+    --foreground: #e6e0e9;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components { 
+  .glass {
+    @apply bg-surface-container/50 backdrop-blur-md border border-outline-variant/10;
+  }
+  
+  .card-gradient {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+  }
+}
+
+/* Custom scrollbar for a more premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-container-lowest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-container-high);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
 }
